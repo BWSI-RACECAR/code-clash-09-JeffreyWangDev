@@ -133,6 +133,8 @@ class Solution:
         new.insert(0,0)
         for i in range(1,len(new)):
             convolutionA.append(self.f2A[i-1]*new[i-1] + self.f2A[i]*new[i] + self.f2A[i+1]*new[i+1])
+        convolutionA.pop(-1)
+        convolutionA.pop(0)
         return convolutionA
 
     def compute_cdf(self):
