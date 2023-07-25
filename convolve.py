@@ -128,13 +128,13 @@ class Solution:
         return a
     def compute_convolution(self):
         convolutionA = []
-        for i in range(self.data.T):
+        for i in range(len(self.data.ti)):
             f = self.f1A[:i+1]
             g = self.f2A[i::-1]
             a = []
             for j in range(len(f)):
                 a.append(f[j] * g[j])
-            convolutionA.append(self.integrateTrapz(a, self.data.ti[:i+1]))
+            convolutionA.append(self.integrateTrapz(c, self.data.ti[:i+1]))
         return convolutionA
 
     def compute_cdf(self):
