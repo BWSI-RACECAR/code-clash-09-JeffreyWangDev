@@ -134,7 +134,7 @@ class Solution:
             a = []
             for j in range(len(f)):
                 a.append(f[j] * g[j])
-            convolutionA.append(self.integrateTrapz(c, self.data.ti[:i+1]))
+            convolutionA.append(self.integrateTrapz(a, self.data.ti[:i+1]))
         return convolutionA
 
     def compute_cdf(self):
