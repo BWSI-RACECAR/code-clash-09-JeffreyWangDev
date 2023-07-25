@@ -131,10 +131,10 @@ class Solution:
         for i in range(len(self.data.ti)):
             f = self.f1A[:i+1]
             g = self.f2A[i::-1]
-            a = []
+            Cj = []
             for j in range(len(f)):
-                a.append(f[j] * g[j])
-            convolutionA.append(self.integrateTrapz(a, self.data.ti[:i+1]))
+                Cj.append(f[j]*g[j])
+            convolutionA.append(self.integrateTrapz(Cj, self.data.ti[:i+1]))
         return convolutionA
 
     def compute_cdf(self):
@@ -157,7 +157,7 @@ class Solution:
         return (float): The PPF of the probability distribution.
         """
         low = 0
-        high = len(cdf_values) - 1
+        high = len(cdf_values)-1
         while high - low > 1:
             mid = (low + high) // 2
             if cdf_values[mid] < target:
