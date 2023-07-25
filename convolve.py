@@ -44,6 +44,8 @@ Prompt
 [TODO] #2 Implement a search algorithm given probModelAX to determine the time to completion (timeModelAX) with 90% probability of confidence. 
 """
 
+#import matplotlib.pyplot as plt 
+
 class DataInput:
     def __init__(self):
         self.probModel = float(input("Enter the probability model: "))
@@ -121,11 +123,7 @@ class Solution:
             return 0
         h = (x[-1] - x[0])/(n-1)
         return (h/2) * (f[0] + 2 *sum(f[1:n-1]) + f[n-1])
-    def deep(self,lista):
-        a = []
-        for i in lista:
-            a.append(i)
-        return a
+
     def compute_convolution(self):
         convolutionA = []
         for i in range(len(self.data.ti)):
@@ -143,19 +141,20 @@ class Solution:
         return [self.integrateTrapz(self.convolutionA[:i], self.data.ti[:i]) for i in self.data.ti[1:]]
 
         
-    def search_ppf(cdf_values, target, epsilon=1e-6):
+    def search_ppf(self, cdf_values, target, epsilon=1e-6):
         """
-        Calculate the PPF (point percent function = inverse cumulative distribution function [CDF])
+        Calculate the PPF (point percent function = inverse cuumulative distribution function [CDF])
         of a probability distribution using search.
-
+        
         This will find the X axis value of a given y axis value input
-
+        
         cdf_values (list): A sorted list representing the CDF from 0 to 1.
         target (float): The target probability for which the PPF is computed.
         epsilon (float): The tolerance level for the search.
 
         return (float): The PPF of the probability distribution.
         """
+        
         low = 0
         high = len(cdf_values)-1
         while high - low > 1:
