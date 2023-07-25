@@ -164,8 +164,10 @@ class Solution:
                 low = mid
             else:
                 high = mid
-        return high if abs(cdf_values[high] - target) < epsilon else low
-
+        if abs(cdf_values[high] - target) < epsilon:
+            return high
+        else:
+            return low
 
 
 
