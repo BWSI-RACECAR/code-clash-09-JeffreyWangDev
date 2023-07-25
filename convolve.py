@@ -95,6 +95,12 @@ class Solution:
         """
         return r*self.exp(-r*t)
 
+    def deep(self,list_a):
+        end = []
+        for i in list_a:
+            end.append(i)
+        return end
+    
     def uniformPDF(self, t,a,b):
         """Compute the probability density function for the uniform probability distribution.
         Args:
