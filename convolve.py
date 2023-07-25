@@ -55,7 +55,7 @@ class DataInput:
         self.ti = [t for t in range(self.T)]
         
 class Solution:
-    def __init__(self, data:DataInput):
+    def __init__(self, data):
         self.data = data
         self.f1A = [self.uniformPDF(fti, min(self.data.timesObs1A), max(self.data.timesObs1A)) for fti in self.data.ti]
         self.f2A = [self.exponentialPDF(fti, 1/self.data.mean2A) for fti in self.data.ti]
