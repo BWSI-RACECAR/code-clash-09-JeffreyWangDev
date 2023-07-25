@@ -121,20 +121,20 @@ class Solution:
             return 0
         h = (x[-1] - x[0])/(n-1)
         return (h/2) * (f[0] + 2 *sum(f[1:n-1]) + f[n-1])
-    def deep(lista):
+    def deep(self,lista):
         a = []
         for i in lista:
             a.append(i)
         return a
     def compute_convolution(self):
         convolutionA = []
-        new = self.deep(self.f1A)
-        new.append(0)
-        new.insert(0,0)
-        for i in range(1,len(new)):
-            convolutionA.append(self.f2A[i-1]*new[i-1] + self.f2A[i]*new[i] + self.f2A[i+1]*new[i+1])
-        convolutionA.pop(-1)
-        convolutionA.pop(0)
+        for i in range(self.data.T):
+            f = self.f1A[:i+1]
+            g = self.f2A[i::-1]
+            a = []
+            for j in range(len(f)):
+                a.append(f[j] * g[j])
+            convolutionA.append(self.integrateTrapz(a, self.data.ti[:i+1]))
         return convolutionA
 
     def compute_cdf(self):
@@ -164,7 +164,8 @@ class Solution:
                 low = mid
             else:
                 high = mid
-        return low + (target - cdf_values[low]) / (cdf_values[high] - cdf_values[low])
+        return high if abs(cdf_values[high] - target) < epsilon else low
+
 
 
 
